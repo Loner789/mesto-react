@@ -1,6 +1,8 @@
+// IMPORTS:
 import React from "react";
-import logo from "../images/icon_logo-white.svg";
+import logo from "../images/icon_logo.svg";
 
+// HEADER COMPONENT:
 function Header() {
   return (
     <header className="header header_place_mesto">

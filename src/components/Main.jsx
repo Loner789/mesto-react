@@ -1,6 +1,8 @@
+// IMPORTS:
 import React from "react";
 import Card from "./Card";
 
+// MAIN COMPONENT:
 function Main(props) {
   return (
     <main className="content">
@@ -34,7 +36,10 @@ function Main(props) {
         aria-label="Блок с фото мест."
       >
         {props.cards.map((card) => (
-          <Card key={card._id} card={card} onCardClick={props.onCardClick} />
+          <Card 
+            key={card._id} 
+            card={card} 
+            onCardClick={props.onCardClick} />
         ))}
       </section>
     </main>

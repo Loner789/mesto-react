@@ -1,3 +1,4 @@
+// IMPORTS:
 import React from "react";
 import Header from "./Header";
 import Main from "./Main";
@@ -9,15 +10,17 @@ import AddPlacePopup from "./AddPlacePopup";
 import ImagePopup from "./ImagePopup";
 import api from "../utils/api";
 
+// BASE COMPONENT OF APPLICATION:
 function App() {
+  // State-variables
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false);
-  const [isEditProfilePopupOpen, setEditProfilePopupOpen] =
-    React.useState(false);
+  const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false);
   const [data, setUserData] = React.useState("");
   const [cards, setCards] = React.useState([]);
   const [selectedCard, setSelectedCard] = React.useState();
 
+  //Side effects:
   React.useEffect(() => {
     api
       .getUserInfo()
@@ -38,6 +41,7 @@ function App() {
       .catch((err) => console.log(err));
   }, []);
 
+  // Functions:
   function handleEditAvatarClick() {
     setEditAvatarPopupOpen(true);
   }
@@ -83,9 +87,13 @@ function App() {
         isOpen={isEditProfilePopupOpen}
         onClose={closeAllPopups}
       />
-      <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} />
+      <AddPlacePopup 
+        isOpen={isAddPlacePopupOpen} 
+        onClose={closeAllPopups} />
       <PopupWithForm />
-      <ImagePopup card={selectedCard} onClose={closeAllPopups} />
+      <ImagePopup 
+        card={selectedCard} 
+        onClose={closeAllPopups} />
     </div>
   );
 }

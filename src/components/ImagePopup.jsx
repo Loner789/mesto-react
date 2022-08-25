@@ -1,5 +1,7 @@
+// IMPORTS:
 import React from "react";
 
+// IMAGE-POPUP COMPONENT:
 function ImagePopup(props) {
   return (
     <div

@@ -1,6 +1,9 @@
+// IMPORTS:
 import React from "react";
 
+// CARD COMPONENT:
 function Card(props) {
+  // Function for handle of click by card image
   function handleClick() {
     props.onCardClick(props.card);
   }

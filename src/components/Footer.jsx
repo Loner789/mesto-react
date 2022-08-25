@@ -1,5 +1,7 @@
+// IMPORTS:
 import React from "react";
 
+// FOOTER COMPONENT:
 function Footer() {
   return (
     <footer className="footer footer_place_mesto">

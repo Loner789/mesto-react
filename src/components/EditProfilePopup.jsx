@@ -1,6 +1,8 @@
+// IMPORTS:
 import React from "react";
 import PopupWithForm from "./PopupWithForm";
 
+// EDIT-PROFILE-POPUP COMPONENT:
 function EditProfilePopup(props) {
   return (
     <PopupWithForm

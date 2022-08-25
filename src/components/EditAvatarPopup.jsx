@@ -1,6 +1,8 @@
+// IMPORTS:
 import React from "react";
 import PopupWithForm from "./PopupWithForm";
 
+// EDIT-AVATAR-POPUP COMPONENT:
 function EditAvatarPopup(props) {
   return (
     <PopupWithForm
