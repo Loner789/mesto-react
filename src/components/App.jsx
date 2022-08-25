@@ -18,7 +18,7 @@ function App() {
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false);
   const [data, setUserData] = React.useState("");
   const [cards, setCards] = React.useState([]);
-  const [selectedCard, setSelectedCard] = React.useState();
+  const [selectedCard, setSelectedCard] = React.useState(null);
 
   //Side effects:
   React.useEffect(() => {
@@ -62,7 +62,7 @@ function App() {
     setEditAvatarPopupOpen(false);
     setEditProfilePopupOpen(false);
     setAddPlacePopupOpen(false);
-    setSelectedCard();
+    setSelectedCard(null);
   }
 
   return (
