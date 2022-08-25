@@ -1,11 +1,15 @@
 import React from "react";
+import Card from "./Card";
 
 function Main(props) {
   return (
     <main className="content">
       <section className="profile profile_place_mesto">
-        <div className="profile__img-wrapper" onClick={props.onEditAvatar} style={{ backgroundImage: `url(${props.userAvatar})` }}>
-        </div>
+        <div
+          className="profile__img-wrapper"
+          onClick={props.onEditAvatar}
+          style={{ backgroundImage: `url(${props.userAvatar})` }}
+        ></div>
         <div className="profile__info">
           <div className="profile__info-wrapper">
             <h1 className="profile__title">{props.userName}</h1>
@@ -28,7 +32,11 @@ function Main(props) {
       <section
         className="places places_place_mesto"
         aria-label="Блок с фото мест."
-      ></section>
+      >
+        {props.cards.map((card) => (
+          <Card key={card._id} card={card} onCardClick={props.onCardClick} />
+        ))}
+      </section>
     </main>
   );
 }
