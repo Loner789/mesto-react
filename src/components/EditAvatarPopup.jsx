@@ -3,13 +3,14 @@ import React from "react";
 import PopupWithForm from "./PopupWithForm";
 
 // EDIT-AVATAR-POPUP COMPONENT:
-function EditAvatarPopup(props) {
+function EditAvatarPopup({ isOpen, onClose }) {
   return (
     <PopupWithForm
       name="edit-avatar-popup"
       title="Обновить аватар"
-      isOpen={props.isOpen}
-      onClose={props.onClose}
+      isOpen={isOpen}
+      onClose={onClose}
+      buttonText="Сохранить"
     >
       <label className="popup__container-field">
         <input

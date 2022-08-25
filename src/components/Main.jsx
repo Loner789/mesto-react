@@ -1,45 +1,68 @@
 // IMPORTS:
 import React from "react";
 import Card from "./Card";
+import api from "../utils/api";
 
 // MAIN COMPONENT:
-function Main(props) {
+function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick }) {
+  // State-variables
+  const [userData, setUserData] = React.useState({});
+  const [cards, setCards] = React.useState([]);
+
+  //Side effects:
+  React.useEffect(() => {
+    api
+      .getUserInfo()
+      .then((data) => {
+        setUserData({
+          name: data.name,
+          description: data.about,
+          avatar: data.avatar,
+        });
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  React.useEffect(() => {
+    api
+      .getInitialCards()
+      .then((cards) => setCards(cards))
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <main className="content">
       <section className="profile profile_place_mesto">
         <div
           className="profile__img-wrapper"
-          onClick={props.onEditAvatar}
-          style={{ backgroundImage: `url(${props.userAvatar})` }}
+          onClick={onEditAvatar}
+          style={{ backgroundImage: `url(${userData.avatar})` }}
         ></div>
         <div className="profile__info">
           <div className="profile__info-wrapper">
-            <h1 className="profile__title">{props.userName}</h1>
+            <h1 className="profile__title">{userData.name}</h1>
             <button
               type="button"
               className="profile__edit-button"
               aria-label="Редактировать профиль."
-              onClick={props.onEditProfile}
+              onClick={onEditProfile}
             ></button>
           </div>
-          <p className="profile__subtitle">{props.userDescription}</p>
+          <p className="profile__subtitle">{userData.description}</p>
         </div>
         <button
           type="button"
           className="profile__add-button"
           aria-label="Добавить фото."
-          onClick={props.onAddPlace}
+          onClick={onAddPlace}
         ></button>
       </section>
       <section
         className="places places_place_mesto"
         aria-label="Блок с фото мест."
       >
-        {props.cards.map((card) => (
-          <Card 
-            key={card._id} 
-            card={card} 
-            onCardClick={props.onCardClick} />
+        {cards.map((card) => (
+          <Card key={card._id} card={card} onCardClick={onCardClick} />
         ))}
       </section>
     </main>

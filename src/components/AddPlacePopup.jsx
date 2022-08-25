@@ -3,13 +3,14 @@ import React from "react";
 import PopupWithForm from "./PopupWithForm";
 
 // ADD-PLACE-POPUP COMPONENT:
-function AddPlacePopup(props) {
+function AddPlacePopup({ isOpen, onClose }) {
   return (
     <PopupWithForm
       name="add-card-popup"
       title="Новое место"
-      isOpen={props.isOpen}
-      onClose={props.onClose}
+      isOpen={isOpen}
+      onClose={onClose}
+      buttonText="Сохранить"
     >
       <label className="popup__container-field">
         <input

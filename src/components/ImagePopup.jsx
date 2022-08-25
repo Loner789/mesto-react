@@ -2,28 +2,24 @@
 import React from "react";
 
 // IMAGE-POPUP COMPONENT:
-function ImagePopup(props) {
+function ImagePopup({ card, onClose }) {
   return (
     <div
-      className={`popup popup_type_image-popup ${
-        props.card ? "popup_opened" : ""
-      }`}
+      className={`popup popup_type_image-popup ${card ? "popup_opened" : ""}`}
     >
       <div className="popup__figure">
         <img
-          src={props.card ? props.card.link : "#"}
-          alt={props.card ? `Фото ${props.card.name}.` : ""}
+          src={card ? card.link : "#"}
+          alt={card ? `Фото ${card.name}.` : ""}
           className="popup__image"
         />
-        <p className="popup__image-caption">
-          {props.card ? props.card.name : ""}
-        </p>
+        <p className="popup__image-caption">{card ? card.name : ""}</p>
         <button
           type="button"
           className="popup__container-discard"
           id="image-popup-discard-button"
           aria-label="Закрыть окно."
-          onClick={props.onClose}
+          onClick={onClose}
         ></button>
       </div>
     </div>
