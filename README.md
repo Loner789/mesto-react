@@ -1,6 +1,6 @@
 # Проект "Mesto<font size = 5>^Russia^</font>"
 
-**_[Cсылка на проект](https://loner789.github.io/mesto-react/index.html)_**
+**_[Cсылка на проект](https://loner789.github.io/mesto-react/)_**
 
 ---
 
@@ -17,6 +17,7 @@
 * ##### БЭМ
 * ##### ES6
 * ##### React.js
+* ##### Node.js
 * ##### Git
 ---
 
@@ -26,7 +27,16 @@
 - При разработке веб-приложения использованы CSS-технологии [grid](https://developer.mozilla.org/ru/docs/Web/CSS/CSS_Grid_Layout/Basic_Concepts_of_Grid_Layout) и [flex](https://developer.mozilla.org/ru/docs/Learn/CSS/CSS_layout/Flexbox), поддерживаемые большинством современных браузеров в последней версии;
 - При разработке веб-приложения использован язык программирования [JavaScript](https://ru.wikipedia.org/wiki/JavaScript);
 - Файловая структура: [БЭМ Nested](https://ru.bem.info/methodology/filestructure/#nested);
-- Проект реализован при помощи JavaScript-библиотеки [React](https://reactjs.org/).
+- Проект реализован при помощи JavaScript-библиотеки [React](https://reactjs.org/);
+- Настройка проекта выполнена при помощи [Create React App](https://reactdev.ru/libs/cra/).
+
+---
+
+### Планы по доработке
+- Настройка валидации форм;
+- Реализация функции добавления новых карточек и данных пользователя на страницу;
+- Настройка аутентификации пользователя.
+
 ---
 
 **Приятного просмотра!**
