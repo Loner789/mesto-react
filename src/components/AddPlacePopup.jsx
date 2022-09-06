@@ -3,13 +3,38 @@ import React from "react";
 import PopupWithForm from "./PopupWithForm";
 
 // ADD-PLACE-POPUP COMPONENT:
-function AddPlacePopup({ isOpen, onClose }) {
+function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
+  // State-variables
+  const [name, setName] = React.useState("");
+  const [link, setLink] = React.useState("");
+
+  // Side-effects
+  React.useEffect(() => {
+    setName("");
+    setLink("");
+  }, [isOpen]);
+
+  // Functions
+  function handleNameChange(e) {
+    setName(e.target.value);
+  }
+
+  function handleLinkChange(e) {
+    setLink(e.target.value);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    onAddPlace({ name, link });
+  }
+
   return (
     <PopupWithForm
       name="add-card-popup"
       title="Новое место"
       isOpen={isOpen}
       onClose={onClose}
+      onSubmit={handleSubmit}
       buttonText="Сохранить"
     >
       <label className="popup__container-field">
@@ -22,6 +47,8 @@ function AddPlacePopup({ isOpen, onClose }) {
           minLength="2"
           maxLength="30"
           required
+          value={name}
+          onChange={handleNameChange}
         />
         <span className="card-name-error popup__container-input-error"></span>
       </label>
@@ -33,6 +60,8 @@ function AddPlacePopup({ isOpen, onClose }) {
           id="card-link"
           placeholder="Ссылка на картинку"
           required
+          value={link}
+          onChange={handleLinkChange}
         />
         <span className="card-link-error popup__container-input-error"></span>
       </label>

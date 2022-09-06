@@ -1,34 +1,12 @@
 // IMPORTS:
 import React from "react";
 import Card from "./Card";
-import api from "../utils/api";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 // MAIN COMPONENT:
-function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick }) {
+function Main({ onEditAvatar, onEditProfile, onAddPlace, cards, onCardClick, onCardLike, onCardDelete }) {
   // State-variables
-  const [userData, setUserData] = React.useState({});
-  const [cards, setCards] = React.useState([]);
-
-  //Side effects:
-  React.useEffect(() => {
-    api
-      .getUserInfo()
-      .then((data) => {
-        setUserData({
-          name: data.name,
-          description: data.about,
-          avatar: data.avatar,
-        });
-      })
-      .catch((err) => console.log(err));
-  }, []);
-
-  React.useEffect(() => {
-    api
-      .getInitialCards()
-      .then((cards) => setCards(cards))
-      .catch((err) => console.log(err));
-  }, []);
+  const currentUser = React.useContext(CurrentUserContext);
 
   return (
     <main className="content">
@@ -36,11 +14,11 @@ function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick }) {
         <div
           className="profile__img-wrapper"
           onClick={onEditAvatar}
-          style={{ backgroundImage: `url(${userData.avatar})` }}
+          style={{ backgroundImage: `url(${currentUser.avatar})` }}
         ></div>
         <div className="profile__info">
           <div className="profile__info-wrapper">
-            <h1 className="profile__title">{userData.name}</h1>
+            <h1 className="profile__title">{currentUser.name}</h1>
             <button
               type="button"
               className="profile__edit-button"
@@ -48,7 +26,7 @@ function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick }) {
               onClick={onEditProfile}
             ></button>
           </div>
-          <p className="profile__subtitle">{userData.description}</p>
+          <p className="profile__subtitle">{currentUser.about}</p>
         </div>
         <button
           type="button"
@@ -62,7 +40,13 @@ function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick }) {
         aria-label="Блок с фото мест."
       >
         {cards.map((card) => (
-          <Card key={card._id} card={card} onCardClick={onCardClick} />
+          <Card
+            key={card._id}
+            card={card}
+            onCardClick={onCardClick}
+            onCardLike={onCardLike}
+            onCardDelete={onCardDelete}
+          />
         ))}
       </section>
     </main>

@@ -4,9 +4,10 @@
     width: 120px;
     height: 120px;
     position: relative;
-    cursor: pointer;
-    background-size: contain;
+    background-size: cover;
+    background-position: center;
     border-radius: 50%;
+    cursor: pointer;
 }
 
 .profile__img-wrapper::after {

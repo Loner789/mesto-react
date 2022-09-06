@@ -1,11 +1,31 @@
 // IMPORTS:
 import React from "react";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 // CARD COMPONENT:
-function Card({ card, onCardClick }) {
-  // Function for handle of click by card image
+function Card({ card, onCardClick, onCardLike, onCardDelete }) {
+  // State-variables
+  const currentUser = React.useContext(CurrentUserContext);
+  const isOwn = card.owner._id === currentUser._id;
+  const cardDeleteButtonClassName = `place__delete-button ${
+    isOwn ? "" : "place__delete-button_hidden"
+  }`;
+  const isLiked = card.likes.some((item) => item._id === currentUser._id);
+  const cardLikeButtonClassName = `place__like-button ${
+    isLiked ? "place__like-button_active" : ""
+  }`;
+
+  // Functions
   function handleClick() {
     onCardClick(card);
+  }
+
+  function handleLikeClick() {
+    onCardLike(card);
+  }
+
+  function handleDeleteClick() {
+    onCardDelete(card);
   }
 
   return (
@@ -20,7 +40,8 @@ function Card({ card, onCardClick }) {
         <div className="place__like-wrapper">
           <button
             type="button"
-            className="place__like-button"
+            className={cardLikeButtonClassName}
+            onClick={handleLikeClick}
             aria-label="Поставить лайк."
           ></button>
           <p className="place__likes-counter">{card.likes.length}</p>
@@ -28,7 +49,8 @@ function Card({ card, onCardClick }) {
       </div>
       <button
         type="button"
-        className="place__delete-button"
+        className={cardDeleteButtonClassName}
+        onClick={handleDeleteClick}
         aria-label="Удалить карточку."
       ></button>
     </article>
