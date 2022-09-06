@@ -1,15 +1,15 @@
 // IMPORTS:
-import React from "react";
+import {useEffect, useState} from "react";
 import PopupWithForm from "./PopupWithForm";
 
 // ADD-PLACE-POPUP COMPONENT:
 function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
   // State-variables
-  const [name, setName] = React.useState("");
-  const [link, setLink] = React.useState("");
+  const [name, setName] = useState("");
+  const [link, setLink] = useState("");
 
   // Side-effects
-  React.useEffect(() => {
+  useEffect(() => {
     setName("");
     setLink("");
   }, [isOpen]);

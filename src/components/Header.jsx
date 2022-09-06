@@ -1,5 +1,4 @@
 // IMPORTS:
-import React from "react";
 import logo from "../images/icon_logo.svg";
 
 // HEADER COMPONENT:

@@ -1,6 +1,3 @@
-// IMPORTS:
-import React from "react";
-
 // FOOTER COMPONENT:
 function Footer() {
   return (

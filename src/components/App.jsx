@@ -1,5 +1,5 @@
 // IMPORTS:
-import React from "react";
+import { useEffect, useState } from "react";
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
@@ -14,17 +14,15 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext";
 // BASE COMPONENT OF APPLICATION:
 function App() {
   // State-variables
-  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
-    React.useState(false);
-  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
-    React.useState(false);
-  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
-  const [selectedCard, setSelectedCard] = React.useState(null);
-  const [currentUser, setCurrentUser] = React.useState({});
-  const [cards, setCards] = React.useState([]);
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
+  const [selectedCard, setSelectedCard] = useState(null);
+  const [currentUser, setCurrentUser] = useState({});
+  const [cards, setCards] = useState([]);
 
-  //Side effects:
-  React.useEffect(() => {
+  // Side effects:
+  useEffect(() => {
     api
       .getUserInfo()
       .then((data) => {
@@ -33,7 +31,7 @@ function App() {
       .catch((err) => console.log(err));
   }, []);
 
-  React.useEffect(() => {
+  useEffect(() => {
     api
       .getInitialCards()
       .then((cards) => setCards(cards))
@@ -87,11 +85,14 @@ function App() {
   function handleCardLike(card) {
     const isLiked = card.likes.some((item) => item._id === currentUser._id);
 
-    api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
-      setCards((state) =>
-        state.map((element) => (element._id === card._id ? newCard : element))
-      );
-    });
+    api
+      .changeLikeCardStatus(card._id, !isLiked)
+      .then((newCard) => {
+        setCards((state) =>
+          state.map((element) => (element._id === card._id ? newCard : element))
+        );
+      })
+      .catch((err) => console.log(err));
   }
 
   function handleCardDelete(card) {

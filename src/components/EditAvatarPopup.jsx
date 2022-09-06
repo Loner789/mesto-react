@@ -1,15 +1,15 @@
 // IMPORTS:
-import React from "react";
+import { useEffect, useRef } from "react";
 import PopupWithForm from "./PopupWithForm";
 
 // EDIT-AVATAR-POPUP COMPONENT:
 function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
   // Ref-variables
-  const avatarRef = React.useRef("");
+  const avatarRef = useRef(null);
 
   // Side-effects
-  React.useEffect(() => {
-    avatarRef.current.value = "";
+  useEffect(() => {
+    avatarRef.current.value = null;
   }, [isOpen]);
 
   // Functions

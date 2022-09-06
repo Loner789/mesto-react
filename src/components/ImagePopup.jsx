@@ -1,6 +1,3 @@
-// IMPORTS:
-import React from "react";
-
 // IMAGE-POPUP COMPONENT:
 function ImagePopup({ card, onClose }) {
   return (
@@ -9,11 +6,11 @@ function ImagePopup({ card, onClose }) {
     >
       <div className="popup__figure">
         <img
-          src={card ? card.link : "#"}
+          src={card?.link}
           alt={card ? `Фото ${card.name}.` : ""}
           className="popup__image"
         />
-        <p className="popup__image-caption">{card ? card.name : ""}</p>
+        <p className="popup__image-caption">{card?.name}</p>
         <button
           type="button"
           className="popup__container-discard"

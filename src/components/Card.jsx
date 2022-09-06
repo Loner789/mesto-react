@@ -1,11 +1,11 @@
 // IMPORTS:
-import React from "react";
+import { useContext } from "react";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 // CARD COMPONENT:
 function Card({ card, onCardClick, onCardLike, onCardDelete }) {
   // State-variables
-  const currentUser = React.useContext(CurrentUserContext);
+  const currentUser = useContext(CurrentUserContext);
   const isOwn = card.owner._id === currentUser._id;
   const cardDeleteButtonClassName = `place__delete-button ${
     isOwn ? "" : "place__delete-button_hidden"

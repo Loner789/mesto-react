@@ -1,6 +1,3 @@
-// IMPORTS:
-import React from "react";
-
 // COMMON PART FOR ALL POPUPS WITH FORM:
 function PopupWithForm({
   name,
