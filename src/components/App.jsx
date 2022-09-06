@@ -117,7 +117,7 @@ function App() {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-    <div className="page">
+      <div className="page">
         <Header />
         <Main
           onEditAvatar={handleEditAvatarClick}
@@ -139,10 +139,14 @@ function App() {
           onClose={closeAllPopups}
           onUpdateUser={handleUpdateUser}
         />
-        <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace={handleAddPlaceSubmit}/>
+        <AddPlacePopup
+          isOpen={isAddPlacePopupOpen}
+          onClose={closeAllPopups}
+          onAddPlace={handleAddPlaceSubmit}
+        />
         <PopupWithForm />
         <ImagePopup card={selectedCard} onClose={closeAllPopups} />
-    </div>
+      </div>
     </CurrentUserContext.Provider>
   );
 }
